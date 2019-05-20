@@ -1,0 +1,18 @@
+This file contains the response to Question 1:
+
+1.  Evaluate the parser in its current form:
+    -What sorts of sentences can it parse?
+        It can parse the sentences which their vocabulary is in the loaded gramar file and those that which type of word combinations
+        are defined as rules. For example if we create a sentence with words that are defined in the file simple.gr and the type of words combinations are defined
+        as rules like: "she steals watermelons from aliens" the program executes succesfully printing the chart with the diferent edges (Successfully parsed!)
+
+    -What types of sentences will it fail to parse?
+        It will fail sentence which contain a word that is not defined in the grammar file or if the rule of type of words is not defined.
+        For instance, if we execute the program with the simple.gr and the sentence "john loves mary" the program fails
+        as the second word of the sentence (KeyError: 'loves') is not defined in the simple.gr file. Also if the
+        type of words order are not defined as rules but the words are in the grammar file it will not create the tree (prints nothing) 
+        as it happens with the sentence "she was was buckaroo". Two contiguously verb rule is not defined.
+
+    -What improvements to the grammar or parser are required to properly parse common failed sentences?
+        The words that failed could be added to the vocabulary and if its a rule error that is not defined it could be added as well. For intance
+        conjunctions are not defined and we could add them.

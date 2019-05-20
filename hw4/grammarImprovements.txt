@@ -1,0 +1,21 @@
+This file contains the response to Question 2:
+
+In simple.gr:
+
+    Added rule of conjuntion:
+
+        0	np	np conj np  #this is the rule for the conjuntion that should be between to noun prases
+
+    Added rule for new words:
+
+        0   conj and        # added the conjuntion and
+        0   conj or         # added the conjuntion or
+        0	fn	woman       # added a noum
+        0	fn	apple       # added a noun 
+        0	fn	man         # added a noum
+        0	fn	woman       # added a noum
+
+    Example: "the alien is a man or a woman"
+
+        Tree: s [np  [fd [the] ] [nbar  [fn [alien] ] ] ]  [fis [is] ] [np [np  [fd [a] ] [nbar  [fn [man] ] ] ]  [conj [or] ] [np  [fd [a] ] [nbar  [fn [woman] ] ] ] ]
+        Prob: File with no probability defined or defined to "0" by default

@@ -1,0 +1,58 @@
+This file contains the response to Question 3 and Question 4:
+
+In ChartyPy3.py:
+
+    1. In function: struct2Str(edge, chart, grammar, prob=0)
+        It has been modified so it creates the tree according to the diferent rules for the words
+        of the input sentence, and calculates the probabilty for that tree to happen.
+
+        It is a recursive method so it takes the current edge and the accumulated probability
+        apart from the chart and the grammar
+
+        The function steps are:
+            -for the pased edge from the chart, the next edges are saved on a variable, 
+            the grammar is added to the tree and the dictionary key of the rule of thar edge 
+            is created to get its probability from the file using an auxilary funtion in PSGParsePy3.py
+            -the probability is updated adding in logarimins from
+            -start a loop for each grammar in the edge:
+                -check if it is terminal and added to the tree structure
+                -if not call recursively the funtion with the next edge and the calculated probability
+                it will calculate a new probability and tree structure which will update the current one
+            -finally the tree and the probability are returned
+    2. In function: getParse(inputlength, chart, grammar)
+        It has been modified to it also returns the probabilities calculated from the struct2Str() function
+    3. In function: printParses(parses, probs):
+        It has been modified so it prints the trees woth their probabilities.
+
+In PSGParse3.py:
+    1. Added variables to save the dictionary with the probabilities for the diferent rules
+    2. In funtion: load(self, filename)
+        The variable of the dictionary is filled accesing the 'num' colum from the file. therefore
+        it will contain the rule as key and the probability as value
+    3. New funtion: getProb(self, key)
+        Thsi funtion has been created for calling it from the ChartyPy3.py so it returns the
+        probability of the pased rule as parameter.
+
+Results and test:
+
+    Input:"john drives a jetcar"
+    Output:
+        Tree: s [np  [fname [john] ] ] [vp [vbar [vbar  [fv [drives] ] ] [np  [fd [a] ] [nbar  [fn [jetcar] ] ] ] ] ] 
+        Prob: 1.8900000000000051e-07
+    There is only a possible three which is created created
+
+    Input: "john drives a jetcar in a watermelon"
+    Output:
+
+        Tree: s [np  [fname [john] ] ] [vp [vbar [vbar  [fv [drives] ] ] [np  [fd [a] ] [nbar  [fn [jetcar] ] ] ] ] [vbar-mods [pp  [fp [in] ] [np  [fd [a] ] [nbar  [fn [watermelon] ] ] ] ] ] ] 
+        Prob: 1.312200000000004e-10
+
+        Tree: s [np  [fname [john] ] ] [vp [vbar [vbar  [fv [drives] ] ] [np  [fd [a] ] [nbar  [fn [jetcar] ] ] ] [pp  [fp [in] ] [np  [fd [a] ] [nbar  [fn [watermelon] ] ] ] ] ] ] 
+        Prob: 1.0206000000000027e-10
+
+        Tree: s [np  [fname [john] ] ] [vp [vbar [vbar  [fv [drives] ] ] [np  [fd [a] ] [nbar  [fn [jetcar] ] [nbar-mods [pp  [fp [in] ] [np  [fd [a] ] [nbar  [fn [watermelon] ] ] ] ] ] ] ] ] ] 
+        Prob: 4.0824000000000117e-10
+    
+    In this case with the previous ambiguous phrase we got three possible trees as the las part of the sentence "in a watermelon" could be
+    interpretated in three diferent ways according to the defined rules in the vocabulary. The three gotten probabilities are too low and similar.
+    
